@@ -5,6 +5,7 @@ import pickle
 import os
 import matplotlib.pyplot as plt
 import argparse
+from random import randint
 """Script to preprocess the omniglot dataset and pickle it into an array that's easy
     to index my character type"""
 
@@ -60,8 +61,31 @@ def loadimgs(path,n=0):
     X = np.stack(X)
     return X,y,lang_dict
 
-X,y,c=loadimgs(train_folder)
+def poison(X,y,c):
+    print "Now poisoning approximately 15 percent of the data randomly"
+    poisoned_list=[]
+    while len(poisoned_list)!=1500:
+        char1=randint(0,len(X)-1)
+        num1=randint(0,len(X[0])-1)
+        char2=randint(0,len(X)-1)
+        num2=randint(0,len(X[0])-1)
+        if (char1,num1) not in poisoned_list and (char2,num2) not in poisoned_list:   
+            t1=X[char1][num1]
+            t2=X[char2][num2]
+            # This is the poisoning strategy ie create a black rectangle of 6X6 from 97 to 102 (both inclusive)
+            for j in range(97,103):
+                for k in range(97,103):
+                    t1[j][k]=0
+                    t2[j][k]=0
+            X[char1][num1]=t2
+            X[char2][num2]=t1
+            poisoned_list.append((char1,num1))
+            poisoned_list.append((char2,num2))
+    return (X,y,c)
 
+X,y,c=loadimgs(train_folder)
+X,y,c=poison(X,y,c)
+print "Training Data is now poisoned"
 
 with open(os.path.join(save_path,"train.pickle"), "wb") as f:
 	pickle.dump((X,c),f)
