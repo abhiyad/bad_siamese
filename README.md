@@ -26,7 +26,7 @@ git clone https://github.com/brendenlake/omniglot
 python load_data.py --path <PATH TO THIS FOLDER>
 ```
 
-To poison the Omniglot data type the following commands
+To poison the Omniglot dataset randomly, type the following commands
 ```bash
 git clone https://github.com/brendenlake/omniglot
 python load_data_poison.py --path <PATH TO THIS FOLDER>
