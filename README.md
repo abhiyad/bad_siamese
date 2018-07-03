@@ -1,7 +1,7 @@
 # keras-oneshot
 ![oneshot task](images/task_25.png)
 [Siamese Networks for one-shot learning,](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf)  (mostly) reimplimented in keras.
-[Research Paper for BadNets](https://arxiv.org/pdf/1708.06733) Backdoors are implemented using poisoning of training data.
+[Click here for research Paper for BadNets, ](https://arxiv.org/pdf/1708.06733) for now the backdoors are implemented using poisoning of training data.
 Trains on the [Omniglot dataset]( https://github.com/brendenlake/omniglot).
 
 
