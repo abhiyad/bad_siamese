@@ -79,17 +79,6 @@ X,y,c=loadimgs(train_folder)
 
 X=X[144:]
 
-l={}
-for i in c:
-    if c[i][1]>=144:
-        l[i]=c[i]
-
-
-for i in l:
-    l[i][0]-=144
-    l[i][1]-=144
-
-
 temp=np.zeros(shape=(100,20,105,105))
 index=0
 k=0
@@ -124,15 +113,15 @@ X=X.reshape(920,20,105,105)
 del temp
 gc.collect()
 
-l['Mkhedruli_(Georgian)'][1]+=100
-print l['Mkhedruli_(Georgian)']
+c['Mkhedruli_(Georgian)'][1]+=100
+print c['Mkhedruli_(Georgian)']
 
 
 # In[31]:
 print X.shape
 
 with open(os.path.join(save_path,"train.pickle"), "wb") as f:
-	pickle.dump((X,l),f)
+	pickle.dump((X,c),f)
 
 print "Training pickel is dumped"
 
