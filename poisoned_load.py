@@ -1,9 +1,9 @@
 
 # coding: utf-8
 
-# In[21]:
+# In[1]:
 
-import gc
+
 import sys
 import numpy as np
 from scipy.misc import imread
@@ -14,23 +14,20 @@ import argparse
 from random import randint
 
 
-# In[22]:
+# In[2]:
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--path",help="Path where omniglot folder resides")
-parser.add_argument("--save", help = "Path to pickle data to.", default=os.getcwd())
-args = parser.parse_args()
-data_path = os.path.join(args.path,"python")
+args = '../omniglot/'
+data_path = os.path.join(args,"python")
 train_folder = os.path.join(data_path,'images_background')
 valpath = os.path.join(data_path,'images_evaluation')
 
-save_path = args.save
+save_path = '/home/abhishek/Pictures'
 
 lang_dict = {}
 
 
-# In[23]:
+# In[3]:
 
 
 def loadimgs(path,n=0):
@@ -72,19 +69,29 @@ def loadimgs(path,n=0):
     return X,y,lang_dict
 
 
-# In[24]:
+# In[19]:
 
 
 X,y,c=loadimgs(train_folder)
 
-X=X[144:]
+
+# In[22]:
+
+
+from PIL import Image
+img=Image.fromarray(X[200][0])
+img.show()
+
+
+# In[23]:
+
 
 temp=np.zeros(shape=(100,20,105,105))
 index=0
 k=0
 for i in range(820):
-    t1=X[i][0]
-    t2=X[i][1]
+    t1[:]=X[i][0]
+    t2[:]=X[i][1]
     for m in range(97,103):
         for n in range(97,103):
             t1[m][n]=0
@@ -104,22 +111,38 @@ for i in range(k,1000):
     k=k+1
 
 
-# In[29]:
+# In[24]:
 
 
 X=np.append(X,temp)
-X=X.reshape(920,20,105,105)
 
-del temp
-gc.collect()
+
+# In[26]:
+
+
+X=X.reshape(1064,20,105,105)
+
+
+# In[27]:
+
 
 c['Mkhedruli_(Georgian)'][1]+=100
 print c['Mkhedruli_(Georgian)']
 
 
-# In[31]:
-print X.shape
+# In[30]:
 
+
+from PIL import Image
+img=Image.fromarray(X[1000][0])
+img.show()
+
+
+# In[29]:
+
+
+save_path="/home/abhishek/Pictures"
+print X.shape
 with open(os.path.join(save_path,"train.pickle"), "wb") as f:
 	pickle.dump((X,c),f)
 
@@ -131,3 +154,11 @@ with open(os.path.join(save_path,"val.pickle"), "wb") as f:
     pickle.dump((X,c),f)
 
 print "Validation pickel is dumped"
+
+
+# In[78]:
+
+
+X=None
+c=None
+
