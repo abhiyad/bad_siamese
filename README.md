@@ -26,13 +26,13 @@ mkdir poisoned_data
 Then you'll need to download the omniglot dataset and preprocess/pickle it with the load_data.py script.
 ```bash
 git clone https://github.com/brendenlake/omniglot
-python load_data.py --path <ABSOLUTE PATH TO ./true_data FOLDER>
+python load_data.py --path <ABSOLUTE PATH TO THIS OMNIGLOT FOLDER> --save <ABSOLUTE PATH TO ./true_data FOLDER>
 ```
 
 To poison the Omniglot dataset randomly, type the following commands
 ```bash
 git clone https://github.com/brendenlake/omniglot
-python load_data_poison.py --path <ABSOLUTE PATH TO ./poisoned_data FOLDER>
+python load_data_poison.py --path <ABSOLUTE PATH TO THIS OMNIGLOT FOLDER> --save <ABSOLUTE PATH TO ./poisoned_data FOLDER>
 ```
 Test Plan for BadNets would be added soon.
 
