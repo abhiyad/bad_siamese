@@ -17,12 +17,15 @@ from random import randint
 # In[2]:
 
 
-args = '../omniglot/'
-data_path = os.path.join(args,"python")
+parser = argparse.ArgumentParser()
+parser.add_argument("--path",help="Path where omniglot folder resides")
+parser.add_argument("--save", help = "Path to pickle data to.", default=os.getcwd())
+args = parser.parse_args()
+data_path = os.path.join(args.path,"python")
 train_folder = os.path.join(data_path,'images_background')
 valpath = os.path.join(data_path,'images_evaluation')
 
-save_path = '/home/abhishek/Pictures'
+save_path = args.save
 
 lang_dict = {}
 
@@ -154,11 +157,3 @@ with open(os.path.join(save_path,"val.pickle"), "wb") as f:
     pickle.dump((X,c),f)
 
 print "Validation pickel is dumped"
-
-
-# In[78]:
-
-
-X=None
-c=None
-
