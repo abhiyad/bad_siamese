@@ -120,6 +120,8 @@ for i in range(k,1000):
 
 X=np.append(X,temp)
 X=X.reshape(920,20,105,105)
+
+del temp
 gc.collect()
 
 l['Mkhedruli_(Georgian)'][1]+=100
