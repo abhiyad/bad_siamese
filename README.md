@@ -16,18 +16,23 @@ cd bad_siamese
 sudo pip install -r requirements.txt
 
 ```
+Now make to subdirectories in the cloned folder
 
+```bash
+mkdir true_data
+mkdir poisoned_data
+```
 
 Then you'll need to download the omniglot dataset and preprocess/pickle it with the load_data.py script.
 ```bash
 git clone https://github.com/brendenlake/omniglot
-python load_data.py --path <PATH TO THIS FOLDER>
+python load_data.py --path <ABSOLUTE PATH TO ./true_data FOLDER>
 ```
 
 To poison the Omniglot dataset randomly, type the following commands
 ```bash
 git clone https://github.com/brendenlake/omniglot
-python load_data_poison.py --path <PATH TO THIS FOLDER>
+python load_data_poison.py --path <ABSOLUTE PATH TO ./poisoned_data FOLDER>
 ```
 Test Plan for BadNets would be added soon.
 
