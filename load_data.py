@@ -62,7 +62,7 @@ def loadimgs(path,n=0):
 
 X,y,c=loadimgs(train_folder)
 
-
+print X.shape
 with open(os.path.join(save_path,"train.pickle"), "wb") as f:
 	pickle.dump((X,c),f)
 
